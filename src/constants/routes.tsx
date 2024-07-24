@@ -14,13 +14,13 @@ import {
 export const routes: IRoute[] = [
   {
     name: 'Main Dashboard',
-    path: '/dashboard/main',
+    path: '/main',
     icon: <HiOutlineHome className="-mt-[7px] h-4 w-4 stroke-2 text-inherit" />,
     collapse: false
   },
   {
     name: 'AI Chat',
-    path: '/dashboard/ai-chat',
+    path: '/ai-chat',
     icon: (
       <HiOutlineCpuChip className="-mt-[7px] h-4 w-4 stroke-2 text-inherit" />
     ),
@@ -28,7 +28,7 @@ export const routes: IRoute[] = [
   },
   {
     name: 'AI Generator',
-    path: '/dashboard/ai-generator',
+    path: '/ai-generator',
     icon: (
       <HiOutlineDocumentText className="-mt-[7px] h-4 w-4 stroke-2 text-inherit" />
     ),
@@ -37,14 +37,14 @@ export const routes: IRoute[] = [
   },
   {
     name: 'AI Assistant',
-    path: '/dashboard/ai-assistant',
+    path: '/ai-assistant',
     icon: <HiOutlineUser className="-mt-[7px] h-4 w-4 stroke-2 text-inherit" />,
     collapse: false,
     disabled: true
   },
   {
     name: 'Users List',
-    path: '/dashboard/users-list',
+    path: '/users-list',
     icon: (
       <HiOutlineUsers className="-mt-[7px] h-4 w-4 stroke-2 text-inherit" />
     ),
@@ -53,7 +53,7 @@ export const routes: IRoute[] = [
   },
   {
     name: 'Profile Settings',
-    path: '/dashboard/settings',
+    path: '/settings',
     icon: (
       <HiOutlineCog8Tooth className="-mt-[7px] h-4 w-4 stroke-2 text-inherit" />
     ),
@@ -62,7 +62,7 @@ export const routes: IRoute[] = [
   },
   {
     name: 'Subscription',
-    path: '/dashboard/subscription',
+    path: '/subscription',
     icon: (
       <HiOutlineCreditCard className="-mt-[7px] h-4 w-4 stroke-2 text-inherit" />
     ),
