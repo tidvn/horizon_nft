@@ -8,14 +8,14 @@ import {
 import { SidebarLinks } from '@/components/layout/sidebar/components/SidebarLinks';
 import { Card } from '@/components/ui/card';
 import { useSidebar } from '@/hooks/useSidebar';
+import { useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { HiX } from 'react-icons/hi';
 import { HiBolt } from 'react-icons/hi2';
 
 
 function Sidebar() {
-  const { isMinimized, toggle } = useSidebar();
-
+  const { isMinimized, toggle } = useSidebar(); 
   return (
     <div
       className={`lg:!z-99 fixed !z-[99] min-h-full w-[300px] transition-all md:!z-[99] xl:!z-0 xl:block
