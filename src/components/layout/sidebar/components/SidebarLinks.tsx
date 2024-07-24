@@ -1,20 +1,14 @@
 'use client';
 
 import NavLink from '@/components/common/link/NavLink';
+import { routes } from '@/constants/routes';
 import { IRoute } from '@/types';
 import { usePathname } from 'next/navigation';
-import { PropsWithChildren, useCallback } from 'react';
-import { FaCircle } from 'react-icons/fa';
+import { useCallback } from 'react';
 
-interface SidebarLinksProps extends PropsWithChildren {
-  routes: IRoute[];
-  [x: string]: any;
-}
 
-export function SidebarLinks(props: SidebarLinksProps) {
+export function SidebarLinks() {
   const pathname = usePathname();
-
-  const { routes, onOpen } = props;
 
   const activeRoute = useCallback(
     (routeName: string) => {
@@ -22,6 +16,7 @@ export function SidebarLinks(props: SidebarLinksProps) {
     },
     [pathname],
   );
+
   const createLinks = (routes: IRoute[]) => {
     return routes.map((route, key) => {
       if (route.disabled) {
@@ -90,29 +85,7 @@ export function SidebarLinks(props: SidebarLinksProps) {
       }
     });
   };
-  // this function creates the links from the secondary accordions (for example auth -> sign-in -> default)
-  const createAccordionLinks = (routes: IRoute[]) => {
-    return routes.map((route: IRoute, key: number) => {
-      return (
-        <li className="mb-2.5 ml-[28px] flex max-w-full items-center" key={key}>
-          <NavLink href={route.layout + route.path} key={key}>
-            <FaCircle className="mr-2 h-1.5 w-1.5 text-zinc-950 dark:text-white" />
-            <p
-              className={`text-xs ${
-                activeRoute(route.path.toLowerCase()) ? 'font-semibold' : ''
-              } ${
-                activeRoute(route.path.toLowerCase())
-                  ? 'text-zinc-950 dark:text-white'
-                  : 'text-zinc-950 dark:text-white'
-              }`}
-            >
-              {route.name}
-            </p>
-          </NavLink>
-        </li>
-      );
-    });
-  };
+ 
   return <>{createLinks(routes)}</>;
 }
 

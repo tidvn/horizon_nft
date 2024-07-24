@@ -1,4 +1,4 @@
-import DashboardLayout from "@/components/layout"
+import DashboardLayout from "@/components/layout/DashboardLayout"
 
 type LayoutProps = {
   children: React.ReactNode
