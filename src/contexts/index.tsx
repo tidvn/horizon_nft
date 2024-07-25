@@ -1,14 +1,22 @@
 "use client";
 
-import React, { ReactNode, lazy } from "react";
-const LucidProvider = lazy(() => import("@/contexts/providers/LucidProvider"));
-const WalletProvider = lazy(() => import("@/contexts/providers/WalletProvider"));
+import dynamic from "next/dynamic";
 
-type Props = {
-    children: ReactNode;
-};
+const LucidProvider = dynamic(
+    async () =>
+        await import("@/contexts/providers/LucidProvider"),
+    { ssr: false }
+);
+const WalletProvider = dynamic(
+    async () =>
+        import("@/contexts/providers/WalletProvider"),
+    { ssr: false }
+);
 
-const ContextProvider = function ({ children }: Props) {
+
+const ContextProvider = function ({ children }: {
+    children: React.ReactNode;
+}) {
     return (
         <>
             <LucidProvider>
