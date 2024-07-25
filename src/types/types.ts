@@ -1,3 +1,4 @@
+import { Network } from "lucid-cardano";
 import { ComponentType } from "react";
 
 export interface IRoute {
@@ -15,3 +16,21 @@ export interface IRoute {
   rightElement?: boolean;
   invisible?: boolean;
 }
+
+export interface IEnviroment {
+  network: Network;
+  blockfrost_api_url: string;
+  blockfrost_api_key: string;
+};
+
+export interface IWallet  {
+  name: string;
+  image: string;
+  balance?: number;
+  address?: string;
+  stakeKey?: string | null;
+  poolId?: string | null;
+  downloadApi?: string;
+  api: () => Promise<any> | any;
+  checkApi: () => Promise<any> | any;
+};
