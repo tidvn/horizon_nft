@@ -9,16 +9,6 @@ import wallets from "@/constants/wallets";
 import { useToast } from "@/components/ui/use-toast";
 import { Blockfrost, Lucid, Network, UTxO } from "lucid-cardano";
 import checkNetwork from "@/utils/check-network";
-// import { Blockfrost, Lucid, Network, UTxO } from "lucid-cardano";
-// import wallets from "~/constants/wallets";
-// import { networks } from "~/constants/networks";
-// import checkNetwork from "~/helpers/check-network";
-// import { ModalContextType } from "~/types/contexts/ModalContextType";
-// import ModalContext from "../components/ModalContext";
-// import { ToastContextType } from "~/types/contexts/ToastContextType";
-// import ToastContext from "../components/ToastContext";
-// import { DECIMAL_PLACES } from "~/constants";
-// import axios from "axios";
 
 type Props = {
     children: ReactNode;
@@ -77,6 +67,9 @@ const WalletProvider = function ({ children }: Props) {
                 address: address as string,
                 pattern: "test",
             });
+            if (networkConnection !== enviroments.network) {
+                throw new Error("Invalid network connection");
+            }
             const stakeKey: string = (await lucid.wallet.rewardAddress()) as string;
             const utxos: Array<UTxO> = (await lucid.wallet.getUtxos()) as Array<UTxO>;
             const { poolId } = await lucid.delegationAt(stakeKey as string);
