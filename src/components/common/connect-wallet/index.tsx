@@ -25,11 +25,11 @@ export default function ConnectWallet() {
         await disconnect();
     };
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col mr-5">
 
             {!wallet ? (
                 <>
-                    <Button className="mb-4"
+                    <Button
                         onClick={() => setDialogOpen(true)}
                     >
                         Connect Wallet

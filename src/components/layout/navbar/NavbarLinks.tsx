@@ -20,7 +20,6 @@ export default function NavLinks() {
 
   return (
     <div className="relative flex min-w-max max-w-max flex-grow items-center justify-around gap-1 rounded-lg md:px-2 md:py-2 md:pl-3 xl:gap-2">
-      
       <ConnectWallet/>    
       <Button
         variant="outline"
