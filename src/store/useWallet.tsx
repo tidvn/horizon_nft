@@ -2,8 +2,8 @@ import create from "zustand";
 import { IWallet } from "@/types";
 import { Blockfrost, Lucid, Network, UTxO } from "lucid-cardano";
 import { enviroments, DECIMAL_PLACES } from "@/constants";
-import {wallets} from "@/constants";
-import {checkNetwork} from "@/utils";
+import { wallets } from "@/constants";
+import { checkNetwork } from "@/utils";
 
 interface WalletState {
     connect: (wallet: IWallet) => Promise<void>;
@@ -57,7 +57,7 @@ export const useWalletStore = create<WalletState>((set, get) => ({
             const balance: number = utxos.reduce((balance: number, utxo: UTxO) => {
                 return balance + Number(utxo.assets.lovelace) / DECIMAL_PLACES;
             }, 0);
-            
+
             set({
                 wallet: {
                     name: name,
@@ -66,8 +66,8 @@ export const useWalletStore = create<WalletState>((set, get) => ({
                     balance: balance,
                     stakeKey: stakeKey,
                     poolId: poolId,
-                    api: () => {}, 
-                    checkApi: () => {},
+                    api: () => { },
+                    checkApi: () => { },
                 },
                 lucid: lucid,
             });
@@ -92,8 +92,7 @@ export const useWalletStore = create<WalletState>((set, get) => ({
     refresh: async () => {
         set({ loading: true });
         try {
-            const { lucid } = get();
-            const { wallet } = get();
+            const { lucid, wallet } = get();
             if (!lucid) throw new Error("Lucid is not initialized");
             const address: string = await lucid.wallet.address();
             const stakeKey: string = (await lucid.wallet.rewardAddress()) as string;
@@ -105,14 +104,14 @@ export const useWalletStore = create<WalletState>((set, get) => ({
 
             set({
                 wallet: {
-                    name: wallet?.name||'',
-                    image: wallet?.image||'',
+                    name: wallet?.name || '',
+                    image: wallet?.image || '',
                     address: address,
                     balance: balance,
                     stakeKey: stakeKey,
                     poolId: poolId,
-                    api: () => {},
-                    checkApi: () => {},
+                    api: () => { },
+                    checkApi: () => { },
                 },
             });
         } catch (error) {
