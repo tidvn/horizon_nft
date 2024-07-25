@@ -67,7 +67,7 @@ export default function ConnectWallet() {
             <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Connect Your Wallet In {network}</DialogTitle>
+                        <DialogTitle>Connect a wallet on {network.toLowerCase()} to continue </DialogTitle>
                         {
                             !lucid ? (
                                 <div className="flex flex-col gap-4 items-center pt-6">

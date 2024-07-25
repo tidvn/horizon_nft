@@ -90,12 +90,7 @@ const WalletProvider = function ({ children }: Props) {
                     poolId: poolId,
                 };
             });
-
             setLucid(lucid);
-            toast({
-                description: "You have successfully connected your wallet",
-              });
-            
         } catch (error:any) {
             toast({
                 title: "Error",
