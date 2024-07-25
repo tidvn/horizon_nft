@@ -28,11 +28,12 @@ export default function ConnectWallet() {
         <div className="flex flex-col">
 
             {!wallet ? (
-                <><Button variant="outline" className="mb-4"
-                    onClick={() => setDialogOpen(true)}
-                >
-                    Connect Wallet
-                </Button>
+                <>
+                    <Button className="mb-4"
+                        onClick={() => setDialogOpen(true)}
+                    >
+                        Connect Wallet
+                    </Button>
                 </>
             ) : (
                 <>

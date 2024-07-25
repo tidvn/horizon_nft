@@ -18,19 +18,23 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        <ThemeProvider>
+      <ThemeProvider attribute="class"
+        defaultTheme="dark"
+        enableSystem
+        disableTransitionOnChange>
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.variable
+          )}
+        >
           <ContextProvider>
             <Toaster />
-            {children}
+            {children}ß
           </ContextProvider>
-        </ThemeProvider>
-      </body>
+
+        </body>
+      </ThemeProvider>
     </html>
   )
 }
