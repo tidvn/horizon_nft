@@ -7,8 +7,7 @@ import {
 } from '@/components/common/scrollbar/Scrollbar';
 import { SidebarLinks } from '@/components/layout/sidebar/components/SidebarLinks';
 import { Card } from '@/components/ui/card';
-import { useSidebar } from '@/hooks/useSidebar';
-import { useState } from 'react';
+import { useSidebar } from '@/hooks';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { HiX } from 'react-icons/hi';
 import { HiBolt } from 'react-icons/hi2';

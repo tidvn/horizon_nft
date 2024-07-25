@@ -1,9 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { useSidebar } from '@/hooks/useSidebar';
-
-import React from 'react';
+import { useSidebar } from '@/hooks';
 import { useState, useEffect } from 'react';
 import { FiAlignJustify } from 'react-icons/fi';
 

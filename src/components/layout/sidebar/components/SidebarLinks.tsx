@@ -1,7 +1,7 @@
 'use client';
 
 import NavLink from '@/components/common/link/NavLink';
-import { routes } from '@/constants/routes';
+import { routes } from '@/constants';
 import { IRoute } from '@/types';
 import { usePathname } from 'next/navigation';
 import { useCallback } from 'react';
