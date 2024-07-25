@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from 'zustand';
 import { IWallet } from "@/types";
 import { Blockfrost, Lucid, Network, UTxO } from "lucid-cardano";
 import { enviroments, DECIMAL_PLACES } from "@/constants";

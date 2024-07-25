@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from 'zustand';
 import { Lucid, Blockfrost } from "lucid-cardano";
 import { enviroments } from "@/constants";
 
