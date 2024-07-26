@@ -1,20 +1,19 @@
 "use client";
 
-import React, { ReactNode, useContext, useState, useEffect } from "react";
-import WalletContext from "@/contexts/components/WalletContext";
-import { IWallet, LucidContextType } from "@/types";
-import LucidContext from "@/contexts/components/LucidContext";
-import { DECIMAL_PLACES, enviroments } from "@/constants";
-import wallets from "@/constants/wallets";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { IWallet, LucidContextType, WalletContextType } from "@/types";
+import LucidContext from "./LucidContext";
 import { useToast } from "@/components/ui/use-toast";
+import wallets from "@/constants/wallets";
 import { Blockfrost, Lucid, Network, UTxO } from "lucid-cardano";
+import { DECIMAL_PLACES, enviroments } from "@/constants";
 import checkNetwork from "@/utils/check-network";
+import React from "react";
 
-type Props = {
+const WalletContext = createContext<WalletContextType>(null!);
+export const WalletProvider = function ({ children }: {
     children: ReactNode;
-};
-
-const WalletProvider = function ({ children }: Props) {
+}) {
     const { lucid, setLucid } = useContext<LucidContextType>(LucidContext);
     const { toast } = useToast();
     const [wallet, setWallet] = useState<IWallet>(null!);
@@ -147,4 +146,11 @@ const WalletProvider = function ({ children }: Props) {
     );
 };
 
-export default WalletProvider;
+export const useWallet = () => {
+    const context = React.useContext(WalletContext)
+    
+    if (context === undefined)
+      throw new Error("wrap your application in <CardanoProvider> to use useCardano components")
+    return context
+  }
+export default WalletContext;

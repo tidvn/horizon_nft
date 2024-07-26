@@ -4,12 +4,12 @@ import dynamic from "next/dynamic";
 
 const LucidProvider = dynamic(
     async () =>
-        await import("@/contexts/providers/LucidProvider"),
+        (await import("@/contexts/LucidContext")).LucidProvider,
     { ssr: false }
 );
 const WalletProvider = dynamic(
     async () =>
-        import("@/contexts/providers/WalletProvider"),
+        (await import("@/contexts/WalletContext")).WalletProvider,
     { ssr: false }
 );
 

@@ -4,20 +4,21 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import wallets from "@/constants/wallets";
-import { ChangeEvent, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { IWallet, LucidContextType, WalletContextType } from "@/types";
-import WalletContext from "@/contexts/components/WalletContext";
-import LucidContext from "@/contexts/components/LucidContext";
+
 import { enviroments } from "@/constants";
 import WalletItem from "./wallet-item";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
+import { useLucid } from "@/contexts/LucidContext";
+import { useWallet } from "@/contexts/WalletContext";
 
 
 export default function ConnectWallet() {
     const { network } = enviroments;
-    const { lucid } = useContext<LucidContextType>(LucidContext);
-    const { wallet, disconnect } = useContext<WalletContextType>(WalletContext)
+    const { lucid } = useLucid();
+    const { wallet, disconnect } = useWallet();
     const [dialogOpen, setDialogOpen] = useState<boolean>(false);
     const [copied, setCopied] = useState(false);
 

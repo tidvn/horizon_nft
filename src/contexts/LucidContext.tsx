@@ -1,15 +1,16 @@
-"use client";
+"use client"
 
-import React, { ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { LucidContextType } from "@/types";
+import React from "react";
 import { Blockfrost, Lucid } from "lucid-cardano";
-import LucidContext from "../components/LucidContext";
 import { enviroments } from "@/constants";
 
-type Props = {
-    children: ReactNode;
-};
+const LucidContext = createContext<LucidContextType>(null!);
 
-const LucidProvider = function ({ children }: Props) {
+export const LucidProvider = function ({ children }: {
+    children: ReactNode;
+}) {
     const [lucid, setLucid] = useState<Lucid>(null!);
     const [loading, setLoading] = useState<boolean>(false);
     const [lucidPlatform, setLucidPlatform] = useState<Lucid>(null!);
@@ -33,4 +34,12 @@ const LucidProvider = function ({ children }: Props) {
     );
 };
 
-export default LucidProvider;
+export const useLucid = () => {
+    const context = React.useContext(LucidContext)
+    
+    if (context === undefined)
+      throw new Error("wrap your application in <CardanoProvider> to use useCardano components")
+    return context
+  }
+
+export default LucidContext;
