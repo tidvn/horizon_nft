@@ -4,14 +4,13 @@ import { IWallet } from "@/types";
 import { Blockfrost, Lucid, Network, UTxO } from 'lucid-cardano';
 import { DECIMAL_PLACES, enviroments } from '@/constants';
 import { checkNetwork } from '@/utils';
+import { toast } from '@/components/ui/use-toast';
 
 interface BlockchainState {
     wallet: IWallet | null;
     lucid: Lucid | null;
     connect: (wallet: IWallet) => Promise<void>;
     disconnect: () => Promise<void>;
-
-
 }
 
 export const useCardanoStore = create<BlockchainState>((set) => ({
@@ -19,12 +18,12 @@ export const useCardanoStore = create<BlockchainState>((set) => ({
     wallet: null,
     lucid: null,
     connect: async (wallet: IWallet) => {
+        try{
         const { name, api, image } = wallet;
         const lucid = await Lucid.new(
             new Blockfrost(enviroments.blockfrost_api_url, enviroments.blockfrost_api_key),
             enviroments.network
         );
-
         lucid.selectWallet(await api());
         const address: string = (await lucid.wallet.address()) as string;
         const networkConnection: Network = checkNetwork({
@@ -32,7 +31,7 @@ export const useCardanoStore = create<BlockchainState>((set) => ({
             pattern: "test",
         });
         if (networkConnection !== enviroments.network) {
-            throw new Error("Invalid network connection");
+            throw new Error(`This app is only available on ${enviroments.network} network`);
         }
         const stakeKey: string = (await lucid.wallet.rewardAddress()) as string;
         const utxos: Array<UTxO> = (await lucid.wallet.getUtxos()) as Array<UTxO>;
@@ -61,6 +60,13 @@ export const useCardanoStore = create<BlockchainState>((set) => ({
                 connectedAt: new Date().getTime(),
             })
         );
+    } catch (error:any) {
+        toast({
+            title: "Error",
+            description: error.message,
+            duration: 5000,
+        });
+    }
     },
     disconnect: async () => {
         set({ wallet: null, lucid: null });

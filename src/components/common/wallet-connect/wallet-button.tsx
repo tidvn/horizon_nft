@@ -31,7 +31,6 @@ export default function WalletButton() {
                 <>
                     <Button
                         variant="outline"
-                        className="mb-4"
                         onClick={() => setDialogOpen(true)}
                     >
                         Connect Wallet
