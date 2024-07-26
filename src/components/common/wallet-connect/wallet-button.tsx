@@ -11,8 +11,10 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem } from "@/component
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { isNil } from "lodash";
 import { useCardanoStore } from "@/store/useCardano";
+import { cn } from "@/utils";
+import { beautifullBalance } from "@/utils/beautifull-number";
 
-export default function WalletButton() {
+export default function WalletButton(props:any) {
     const { network } = enviroments;
     const { wallet, connect, disconnect } = useCardanoStore();
     const [dialogOpen, setDialogOpen] = useState<boolean>(false);
@@ -26,13 +28,10 @@ export default function WalletButton() {
         setDialogOpen(false);
     };
     return (
-        <div className="flex flex-col">
+        <div {...props} className={cn(`flex flex-col`,props.className)}>
             {isNil(wallet) ? (
                 <>
-                    <Button
-                        variant="outline"
-                        onClick={() => setDialogOpen(true)}
-                    >
+                    <Button onClick={() => setDialogOpen(true)} >
                         Connect Wallet
                     </Button>
                     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -47,7 +46,6 @@ export default function WalletButton() {
                                         return (
                                             <>
                                                 <Button
-                                                    variant="secondary"
                                                     className="w-full max-w-[80%] gap-2 items-center"
                                                     onClick={() => handleConnectWallet(wallet)}
                                                 >
@@ -71,17 +69,14 @@ export default function WalletButton() {
                 <>
                     <DropdownMenu>
                         <DropdownMenuTrigger>
-                            <Button
-                                variant="secondary"
-                                className="w-full gap-2 items-center"
-                            >
+                            <Button className="w-full gap-2 items-center">
                                 <Image
                                     src={wallet.image}
                                     alt={wallet.name}
                                     width={24}
                                     height={24}
                                 />
-                                {wallet?.balance || 0}
+                                {beautifullBalance(wallet?.balance)}
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
