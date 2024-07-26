@@ -12,6 +12,7 @@ import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { isNil } from "lodash";
 import { useCardanoStore } from "@/store/useCardano";
 import { cn } from "@/utils";
+import { beautifullBalance } from "@/utils/beautifull-number";
 
 export default function WalletButton(props:any) {
     const { network } = enviroments;
@@ -75,7 +76,7 @@ export default function WalletButton(props:any) {
                                     width={24}
                                     height={24}
                                 />
-                                {wallet?.balance || 0}
+                                {beautifullBalance(wallet?.balance)}
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
