@@ -1,24 +1,25 @@
+/* eslint-disable no-unused-vars */
 import { create } from 'zustand';
 import { IWallet } from "@/types";
 import { Blockfrost, Lucid, Network, UTxO } from 'lucid-cardano';
 import { DECIMAL_PLACES, enviroments } from '@/constants';
 import { checkNetwork } from '@/utils';
 
-interface WalletState {
-    loading: boolean;
+interface BlockchainState {
     wallet: IWallet | null;
+    lucid: Lucid | null;
     connect: (wallet: IWallet) => Promise<void>;
     disconnect: () => Promise<void>;
-    setLoading: (loading: boolean) => void;
 
 
 }
 
-export const useWalletStore = create<WalletState>((set, get) => ({
+export const useCardanoStore = create<BlockchainState>((set) => ({
     loading: false,
     wallet: null,
-    setLoading: (loading: boolean) => { },
-    connect: async ({ name, api, image }: IWallet) => {
+    lucid: null,
+    connect: async (wallet: IWallet) => {
+        const { name, api, image } = wallet;
         const lucid = await Lucid.new(
             new Blockfrost(enviroments.blockfrost_api_url, enviroments.blockfrost_api_key),
             enviroments.network
@@ -51,17 +52,18 @@ export const useWalletStore = create<WalletState>((set, get) => ({
                 api: () => { },
                 checkApi: () => { },
             },
+            lucid: lucid,
         });
         localStorage.setItem(
-                "wallet",
-                JSON.stringify({
-                    name: name.toLowerCase(),
-                    connectedAt: new Date().getTime(),
-                })
-            );
+            "wallet",
+            JSON.stringify({
+                name: name.toLowerCase(),
+                connectedAt: new Date().getTime(),
+            })
+        );
     },
     disconnect: async () => {
-        set({ wallet: null });
+        set({ wallet: null, lucid: null });
         localStorage.removeItem("wallet");
     },
 }));

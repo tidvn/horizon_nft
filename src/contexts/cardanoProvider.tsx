@@ -1,16 +1,14 @@
 "use client";
 
 import React, { ReactNode, useEffect } from "react";
-import { useWalletStore } from "@/store/useWallet";
 import { wallets } from "@/constants";
+import { useCardanoStore } from "@/store/useCardano";
 
-type Props = {
+
+const CardanoProvider = ({ children }: {
     children: ReactNode;
-};
-
-const WalletProvider = ({ children }: Props) => {
-    const { wallet,connect } = useWalletStore();
-
+}) => {
+    const { connect } = useCardanoStore();
     useEffect(() => {
         const walletConnection = localStorage.getItem("wallet");
         if (walletConnection) {
@@ -22,13 +20,9 @@ const WalletProvider = ({ children }: Props) => {
                 }
             }
         }
-        
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    if(!wallet){
-        return
-    }
     return <>{children}</>;
 };
 
-export default WalletProvider;
+export default CardanoProvider;
