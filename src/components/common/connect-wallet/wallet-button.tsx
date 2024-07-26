@@ -29,10 +29,7 @@ export default function WalletButton() {
         <div className="flex flex-col">
             {isNil(wallet) ? (
                 <>
-                    <Button
-                        variant="outline"
-                        onClick={() => setDialogOpen(true)}
-                    >
+                    <Button onClick={() => setDialogOpen(true)}>
                         Connect Wallet
                     </Button>
                     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -47,7 +44,6 @@ export default function WalletButton() {
                                         return (
                                             <>
                                                 <Button
-                                                    variant="secondary"
                                                     className="w-full max-w-[80%] gap-2 items-center"
                                                     onClick={() => handleConnectWallet(wallet)}
                                                 >
@@ -72,7 +68,6 @@ export default function WalletButton() {
                     <DropdownMenu>
                         <DropdownMenuTrigger>
                             <Button
-                                variant="secondary"
                                 className="w-full gap-2 items-center"
                             >
                                 <Image
