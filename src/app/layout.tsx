@@ -24,13 +24,16 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontSans.variable
         )}
       >
-        <ThemeProvider>
+        <ThemeProvider attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange>
           <ContextProvider>
             <Toaster />
             {children}
           </ContextProvider>
         </ThemeProvider>
       </body>
-    </html>
+    </html >
   )
 }
