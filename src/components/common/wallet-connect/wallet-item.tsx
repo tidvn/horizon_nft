@@ -34,7 +34,6 @@ const WalletItem = function ({ wallet }: Props) {
             variant="secondary"
             className="w-full max-w-[80%] gap-2 items-center"
             onClick={handleConnectWallet}
-            disabled={loading}
         >
             <Image
                 src={wallet.image}

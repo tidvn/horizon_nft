@@ -1,7 +1,9 @@
 "use client";
 
-import LucidProvider from "./lucidProvider";
-import WalletProvider from "./walletProvider";
+import dynamic from 'next/dynamic';
+
+const LucidProvider = dynamic(() => import('./lucidProvider'), { ssr: false });
+const WalletProvider = dynamic(() => import('./walletProvider'), { ssr: false });
 
 const ContextProvider = function ({ children }: {
     children: React.ReactNode;
@@ -12,7 +14,7 @@ const ContextProvider = function ({ children }: {
                 <WalletProvider>
                     {children}
                 </WalletProvider>
-            </LucidProvider>
+             </LucidProvider>
         </>
     );
 };
