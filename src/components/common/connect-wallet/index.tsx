@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import wallets from "@/constants/wallets";
-import { useContext, useState } from "react";
-import { IWallet, LucidContextType, WalletContextType } from "@/types";
+import { useState } from "react";
+import { IWallet } from "@/types";
 
 import { enviroments } from "@/constants";
 import WalletItem from "./wallet-item";
