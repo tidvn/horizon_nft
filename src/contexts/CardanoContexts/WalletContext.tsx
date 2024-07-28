@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 "use client";
 
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { IWallet, LucidContextType, WalletContextType } from "@/types";
-import LucidContext from "./LucidContext";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { IWallet, WalletContextType } from "@/types";
+import { useLucid } from "./LucidContext";
 import { useToast } from "@/components/ui/use-toast";
 import wallets from "@/constants/wallets";
 import { Blockfrost, Lucid, Network, UTxO } from "lucid-cardano";
@@ -10,11 +11,12 @@ import { DECIMAL_PLACES, enviroments } from "@/constants";
 import checkNetwork from "@/utils/check-network";
 import React from "react";
 
+
 const WalletContext = createContext<WalletContextType>(null!);
 export const WalletProvider = function ({ children }: {
     children: ReactNode;
 }) {
-    const { lucid, setLucid } = useContext<LucidContextType>(LucidContext);
+    const { lucid, setLucid } = useLucid();
     const { toast } = useToast();
     const [wallet, setWallet] = useState<IWallet>(null!);
     const [loading, setLoading] = useState<boolean>(false);
@@ -150,7 +152,7 @@ export const useWallet = () => {
     const context = React.useContext(WalletContext)
     
     if (context === undefined)
-      throw new Error("wrap your application in <CardanoProvider> to use useCardano components")
+      throw new Error("wrap your application in <WalletContext> to use useWallet components")
     return context
   }
 export default WalletContext;
