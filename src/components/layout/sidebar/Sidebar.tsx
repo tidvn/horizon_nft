@@ -5,7 +5,7 @@ import {
   renderTrack,
   renderView,
 } from '@/components/common/scrollbar/Scrollbar';
-import { SidebarLinks } from '@/components/layout/sidebar/components/SidebarLinks';
+import { SidebarLinks } from '@/components/layout/sidebar/SidebarLinks';
 import { Card } from '@/components/ui/card';
 import { useSidebar } from '@/hooks';
 import { Scrollbars } from 'react-custom-scrollbars-2';
