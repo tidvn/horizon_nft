@@ -32,3 +32,8 @@ export interface IWallet  {
   api: () => Promise<any> | any;
   checkApi: () => Promise<any> | any;
 };
+
+export type Metadata = {
+  name: string;
+  image: string;
+}; 
