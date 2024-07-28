@@ -13,7 +13,7 @@ const WalletProvider = dynamic(
     { ssr: false }
 );
 
-const CardanoProvider = function ({ children }: {
+export const CardanoProvider = function ({ children }: {
     children: React.ReactNode;
 }) {
     return (
@@ -26,5 +26,3 @@ const CardanoProvider = function ({ children }: {
         </>
     );
 };
-
-export default CardanoProvider;

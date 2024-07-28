@@ -1,5 +1,6 @@
 "use client";
-import CardanoProvider from "./CardanoContexts";
+
+import { CardanoProvider } from "./CardanoContexts";
 
 const ContextProvider = function ({ children }: {
     children: React.ReactNode;
