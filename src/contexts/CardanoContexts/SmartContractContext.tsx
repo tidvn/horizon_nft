@@ -2,6 +2,7 @@
 
 import { createContext, PropsWithChildren, useContext } from "react";
 import { SmartContractContextType } from "@/types";
+// import { useLucid } from "./LucidContext";
 
 const SmartContractContext = createContext<SmartContractContextType>(null!);
 
@@ -14,9 +15,8 @@ export const useSmartContract = () => {
 }
 
 export const SmartContractProvider = function ({ children }: PropsWithChildren) {
-
+    // const lucid = useLucid();
     const mintCip68 = async function () {
-
     };
     return (
         <SmartContractContext.Provider value={{ mintCip68 }}>

@@ -1,11 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { PropsWithChildren } from "react";
 
 const LucidProvider = dynamic(
     async () =>
         (await import("@/contexts/CardanoContexts")).LucidProvider,
-    { ssr: false }
+    { ssr: false, }
 );
 const WalletProvider = dynamic(
     async () =>
@@ -18,15 +19,17 @@ const SmartContractProvider = dynamic(
     { ssr: false }
 );
 
-export const CardanoProvider = function ({ children }: {
-    children: React.ReactNode;
-}) {
+export const CardanoProvider = function ({ children }: PropsWithChildren) {
+    if (!LucidProvider || !WalletProvider || !SmartContractProvider) {
+        return;
+    }
+
     return (
         <>
             <LucidProvider>
                 <WalletProvider>
                     <SmartContractProvider>
-                    {children}
+                        {children}
                     </SmartContractProvider>
                 </WalletProvider>
             </LucidProvider>

@@ -1,16 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
-
-
-
-const Home = () => {
-  
-  
-  
+const NftPage = () => {
   return (
     <>
       <Button> mint cip68</Button>
     </>
   );
 }
-export default Home;
+export default NftPage;
