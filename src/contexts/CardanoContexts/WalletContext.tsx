@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 "use client";
 
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, PropsWithChildren, ReactNode, useEffect, useState } from "react";
 import { IWallet, WalletContextType } from "@/types";
 import { useLucid } from "./LucidContext";
 import { useToast } from "@/components/ui/use-toast";
@@ -13,9 +13,7 @@ import React from "react";
 
 
 const WalletContext = createContext<WalletContextType>(null!);
-export const WalletProvider = function ({ children }: {
-    children: ReactNode;
-}) {
+export const WalletProvider = function ({ children } : PropsWithChildren) {
     const { lucid, setLucid } = useLucid();
     const { toast } = useToast();
     const [wallet, setWallet] = useState<IWallet>(null!);
@@ -154,5 +152,4 @@ export const useWallet = () => {
     if (context === undefined)
       throw new Error("wrap your application in <WalletContext> to use useWallet components")
     return context
-  }
-export default WalletContext;
+}
