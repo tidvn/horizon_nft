@@ -1,4 +1,4 @@
-import ImagePicker from "@/components/common/image-picker/ImagePicker";
+import ImagePicker from "@/components/common/image-picker";
 
 export default function HomePage() {
   return (

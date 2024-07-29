@@ -7,7 +7,11 @@ import { useRef, useState } from "react";
 import Image from "next/image"
 import { cn } from "@/utils";
 
-export default function ImagePicker() {
+interface Props {
+    // eslint-disable-next-line no-unused-vars
+    setImage: (image: File) => void
+}
+export default function ImagePicker({ setImage }: Props) {
     const [imageBlob, setImageBlob] = useState<string>('');
     const [isHover, setIsHover] = useState<boolean>(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +36,7 @@ export default function ImagePicker() {
         if (file) {
             const blobUrl = URL.createObjectURL(file);
             setImageBlob(blobUrl);
+            setImage(file);
         } else {
             setImageBlob("");
         }
@@ -43,11 +48,8 @@ export default function ImagePicker() {
     return (
 
         <div className="flex flex-col items-center justify-center gap-6 p-8 md:p-12">
-            <div className="text-center space-y-2">
-                <h2 className="text-2xl font-bold">Upload Images</h2>
-                <p className="text-gray-500 dark:text-gray-400">Drag and drop your images here or click to browse.</p>
-            </div>
-            {imageBlob ? (<div className={`mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[450px] bg-slate-50 `}>
+
+            {imageBlob ? (<div className={`mx-auto flex w-full flex-col justify-center space-y-6 `}>
                 <div
                     className={cn(
                         "relative",
@@ -74,7 +76,10 @@ export default function ImagePicker() {
                     )}
                 </div>
             </div>) : (<>
-
+                <div className="text-center space-y-2">
+                    <h2 className="text-2xl font-bold">Upload Images</h2>
+                    <p className="text-gray-500 dark:text-gray-400">Drag and drop your images here or click to browse.</p>
+                </div>
                 <div className="w-full max-w-md border-2 border-gray-300 border-dashed rounded-lg p-6 flex flex-col items-center justify-center space-y-4 dark:border-gray-700"
                     onDrop={handleAddImage}
                     onDragOver={(event) => event.preventDefault()}
@@ -82,7 +87,6 @@ export default function ImagePicker() {
                     <Icons.upload className="w-12 h-12 text-gray-400" />
                     <p className="text-gray-500 dark:text-gray-400">Drag and drop your images here</p>
                     <Button variant="outline" onClick={handleButtonClick}>
-
                         Browse Files
                     </Button>
                     <input type="file" className="hidden" ref={fileInputRef} onChange={handleAddImage} />

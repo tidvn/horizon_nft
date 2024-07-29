@@ -1,12 +1,14 @@
 import {
     LucideIcon,
     LucideProps,
+    Trash,
     Upload
 } from 'lucide-react';
 
 export type Icon = LucideIcon;
 
 export const Icons = {
+    trash: Trash,
     upload: Upload,
     gitHub: ({ ...props }: LucideProps) => (
         <svg
