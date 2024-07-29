@@ -9,7 +9,7 @@ import { enviroments } from "@/constants";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { isNil } from "lodash";
-import { useWallet } from "@/contexts/CardanoContexts";
+import { useWallet } from "@/contexts/Cardano/Contexts";
 import wallets from "@/constants/wallets";
 
 export default function WalletButton() {

@@ -1,22 +1,12 @@
-"use client"
-
-import { createContext, PropsWithChildren, useContext } from "react";
-import { MintCip68Input, SmartContractContextType } from "@/types";
+import SmartContractContext from "../Contexts/SmartContractContext";
+import { PropsWithChildren } from "react";
+import { MintCip68Input } from "@/types";
 import mintingPolicy from "@/utils/validator";
 import { Address, Constr, Data } from "lucid-cardano";
 import {  utf8ToHex } from "@/utils";
 
-const SmartContractContext = createContext<SmartContractContextType>(null!);
 
-export const useSmartContract = () => {
-    const context = useContext<SmartContractContextType>(SmartContractContext)
-
-    if (context === undefined)
-        throw new Error("wrap your application in <SmartContractProvider> to use useSmartContract components")
-    return context
-}
-
-export const SmartContractProvider = function ({ children }: PropsWithChildren) {
+const SmartContractProvider = function ({ children }: PropsWithChildren) {
     const mintCip68 = async function ({ lucid, assetName, metadata }: MintCip68Input) {
         const policyId = lucid.utils.mintingPolicyToId(mintingPolicy);
         const alwaysSucceedAddress: Address = lucid.utils.validatorToAddress(mintingPolicy,);
@@ -42,3 +32,5 @@ export const SmartContractProvider = function ({ children }: PropsWithChildren) 
         </SmartContractContext.Provider>
     );
 };
+
+export default SmartContractProvider;

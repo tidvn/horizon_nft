@@ -1,19 +1,14 @@
-/* eslint-disable no-unused-vars */
-"use client";
-
-import { createContext, PropsWithChildren, ReactNode, useEffect, useState } from "react";
-import { IWallet, WalletContextType } from "@/types";
-import { useLucid } from "./LucidContext";
+import { PropsWithChildren, useEffect, useState } from "react";
+import { IWallet, } from "@/types";
 import { useToast } from "@/components/ui/use-toast";
 import wallets from "@/constants/wallets";
 import { Blockfrost, Lucid, Network, UTxO } from "lucid-cardano";
 import { DECIMAL_PLACES, enviroments } from "@/constants";
 import checkNetwork from "@/utils/check-network";
-import React from "react";
+import { useLucid } from "../Contexts/LucidContext";
+import WalletContext from "../Contexts/WalletContext";
 
-
-const WalletContext = createContext<WalletContextType>(null!);
-export const WalletProvider = function ({ children } : PropsWithChildren) {
+const WalletProvider = function ({ children }: PropsWithChildren) {
     const { lucid, setLucid } = useLucid();
     const { toast } = useToast();
     const [wallet, setWallet] = useState<IWallet>(null!);
@@ -36,7 +31,7 @@ export const WalletProvider = function ({ children } : PropsWithChildren) {
             });
         }
         //  react-hooks/exhaustive-deps
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -77,7 +72,7 @@ export const WalletProvider = function ({ children } : PropsWithChildren) {
                 return balance + Number(utxo.assets.lovelace) / DECIMAL_PLACES;
             }, 0);
 
-            
+
             setWallet(function (previous: IWallet) {
                 return {
                     ...previous,
@@ -90,11 +85,11 @@ export const WalletProvider = function ({ children } : PropsWithChildren) {
                 };
             });
             setLucid(lucid);
-        } catch (error:any) {
+        } catch (error: any) {
             toast({
                 title: "Error",
                 description: error.message,
-              });
+            });
         } finally {
             setLoading(false);
         }
@@ -105,11 +100,11 @@ export const WalletProvider = function ({ children } : PropsWithChildren) {
             setWallet(null!);
             setLucid(null!);
             localStorage.removeItem("wallet");
-        } catch (error:any) {
+        } catch (error: any) {
             toast({
                 title: "Error",
                 description: error.message,
-              });
+            });
         }
     };
 
@@ -146,10 +141,4 @@ export const WalletProvider = function ({ children } : PropsWithChildren) {
     );
 };
 
-export const useWallet = () => {
-    const context = React.useContext(WalletContext)
-    
-    if (context === undefined)
-      throw new Error("wrap your application in <WalletContext> to use useWallet components")
-    return context
-}
+export default WalletProvider;
