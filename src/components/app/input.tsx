@@ -67,7 +67,7 @@ export default function Component() {
       children: [],
     },
   ])
-  const [editingItem, setEditingItem] = useState(null)
+  const [editingItem, setEditingItem] = useState<any>(null)
   const handleAddMenuItem = (parentId = null) => {
     const newItem = {
       id: Date.now(),
@@ -79,7 +79,7 @@ export default function Component() {
     setMenuItems([...menuItems, newItem])
     setEditingItem(newItem)
   }
-  const handleAddSubMenuItem = (parentItem) => {
+  const handleAddSubMenuItem = (parentItem:any) => {
     const newItem = {
       id: Date.now(),
       name: "New Sub Menu Item",
@@ -93,7 +93,7 @@ export default function Component() {
     setMenuItems(updatedMenuItems)
     setEditingItem(newItem)
   }
-  const handleAddGrandchildMenuItem = (parentItem) => {
+  const handleAddGrandchildMenuItem = (parentItem:any) => {
     const newItem = {
       id: Date.now(),
       name: "New Grandchild Menu Item",
@@ -114,34 +114,34 @@ export default function Component() {
     setMenuItems(updatedMenuItems)
     setEditingItem(newItem)
   }
-  const handleEditMenuItem = (item) => {
+  const handleEditMenuItem = (item:any) => {
     setEditingItem(item)
   }
-  const handleSaveMenuItem = (item) => {
+  const handleSaveMenuItem = (item:any) => {
     const updatedMenuItems = menuItems.map((i) => (i.id === item.id ? item : i))
     setMenuItems(updatedMenuItems)
     setEditingItem(null)
   }
-  const handleDeleteMenuItem = (item) => {
+  const handleDeleteMenuItem = (item:any) => {
     const updatedMenuItems = menuItems.filter((i) => i.id !== item.id)
     setMenuItems(updatedMenuItems)
   }
-  const handleDragAndDrop = (dragIndex, hoverIndex) => {
-    const updatedMenuItems = [...menuItems]
-    const draggedItem = updatedMenuItems[dragIndex]
-    updatedMenuItems.splice(dragIndex, 1)
-    updatedMenuItems.splice(hoverIndex, 0, draggedItem)
-    setMenuItems(updatedMenuItems)
-  }
+  // const handleDragAndDrop = (dragIndex:any, hoverIndex:any) => {
+  //   const updatedMenuItems = [...menuItems]
+  //   const draggedItem = updatedMenuItems[dragIndex]
+  //   updatedMenuItems.splice(dragIndex, 1)
+  //   updatedMenuItems.splice(hoverIndex, 0, draggedItem)
+  //   setMenuItems(updatedMenuItems)
+  // }
   return (
     <div className="flex h-screen w-full flex-col bg-background">
       <header className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-background px-6">
         <h1 className="text-lg font-bold">Menu Editor</h1>
-        <Button onClick={handleAddMenuItem}>Add Menu Item</Button>
+        <Button onClick={()=>handleAddMenuItem()}>Add Menu Item</Button>
       </header>
       <div className="flex-1 overflow-auto p-6">
         <div className="grid gap-6">
-          {menuItems.map((item, index) => (
+          {menuItems.map((item) => (
             <div key={item.id} className="rounded-lg border bg-background p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
@@ -160,12 +160,10 @@ export default function Component() {
               {editingItem?.id === item.id && (
                 <div className="mt-4">
                   <Input
-                    label="Name"
                     value={editingItem.name}
                     onChange={(e) => setEditingItem({ ...editingItem, name: e.target.value })}
                   />
                   <Input
-                    label="URL"
                     value={editingItem.url}
                     onChange={(e) => setEditingItem({ ...editingItem, url: e.target.value })}
                   />
@@ -186,7 +184,7 @@ export default function Component() {
                     </Button>
                   </div>
                   <div className="grid gap-4">
-                    {item.children.map((child, childIndex) => (
+                    {item.children.map((child) => (
                       <div key={child.id} className="rounded-lg border bg-background p-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
@@ -253,7 +251,7 @@ export default function Component() {
   )
 }
 
-function FilePenIcon(props) {
+function FilePenIcon(props:any) {
   return (
     <svg
       {...props}
@@ -275,7 +273,7 @@ function FilePenIcon(props) {
 }
 
 
-function PlusIcon(props) {
+function PlusIcon(props:any) {
   return (
     <svg
       {...props}
@@ -296,7 +294,7 @@ function PlusIcon(props) {
 }
 
 
-function TrashIcon(props) {
+function TrashIcon(props:any) {
   return (
     <svg
       {...props}
@@ -313,27 +311,6 @@ function TrashIcon(props) {
       <path d="M3 6h18" />
       <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
       <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-    </svg>
-  )
-}
-
-
-function XIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
     </svg>
   )
 }
