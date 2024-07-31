@@ -1,5 +1,6 @@
 "use client";
 
+import AuthProvider from "./Authentication/AuthProvider";
 import { CardanoProvider } from "./Cardano/Provider";
 
 const ContextProvider = function ({ children }: {
@@ -7,9 +8,12 @@ const ContextProvider = function ({ children }: {
 }) {
     return (
         <>
-            <CardanoProvider>
-                {children}
-            </CardanoProvider>
+            <AuthProvider>
+                <CardanoProvider>
+                    {children}
+                </CardanoProvider>
+            </AuthProvider>
+
         </>
     );
 };

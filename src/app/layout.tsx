@@ -1,3 +1,4 @@
+"use client"
 import "@/styles/globals.css"
 import { Inter as FontSans } from "next/font/google"
 
