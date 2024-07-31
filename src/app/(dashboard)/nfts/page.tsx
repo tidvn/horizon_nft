@@ -1,9 +1,9 @@
 "use client";
-import { CreateNftForm } from "@/components/app/nfts/components/create-form";
+import NftsPage from "@/components/app/nfts/index";
 const Page = () => {
   return (
     <>
-      <CreateNftForm />
+      <NftsPage />
     </>
   );
 }
