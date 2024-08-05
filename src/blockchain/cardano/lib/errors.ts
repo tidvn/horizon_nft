@@ -1,5 +1,5 @@
-import { toNetworkName } from "../lib/network-dictionary"
-import { TestnetNetwork, USE_CARDANO_ERROR, WalletProvider } from "use-cardano"
+import { TestnetNetwork, USE_CARDANO_ERROR, WalletProvider } from "../types"
+import { toNetworkName } from "./network-dictionary"
 
 export class UseCardanoError extends Error {
   type?: USE_CARDANO_ERROR

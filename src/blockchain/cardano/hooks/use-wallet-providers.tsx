@@ -2,7 +2,7 @@ import { useCardano } from "../contexts/CardanoContext"
 import { filterAvailableProviders } from "../lib/filter-available-providers"
 import { getStoredWalletProvider, setStoredWalletProvider } from "../lib/local-storage"
 import { useEffect, useRef } from "react"
-import { UseCardanoOptionsWithDefaults } from "use-cardano"
+import { UseCardanoOptionsWithDefaults } from "../types"
 
 type Interval = ReturnType<typeof setInterval>
 
@@ -59,6 +59,7 @@ const useWalletProviders = (options: UseCardanoOptionsWithDefaults) => {
     return () => {
       if (interval.current) clearInterval(interval.current)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 }
 

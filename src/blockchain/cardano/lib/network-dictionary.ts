@@ -1,4 +1,4 @@
-import { TestnetNetwork } from "use-cardano"
+import { TestnetNetwork } from "../types"
 
 export const toNetworkId = (network: string) => {
   switch (network) {

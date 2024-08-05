@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCardano } from "../contexts/CardanoContext"
 import {
     disallowedNetworkError, invalidWalletError, noAccountSetError, noDappError, unknownError,
@@ -14,7 +15,7 @@ import { noLiveNetworkChangeWarning } from "../lib/warnings"
 import { isNil } from "lodash"
 import { Lucid, Network, WalletApi } from "lucid-cardano"
 import { useCallback, useEffect } from "react"
-import { UseCardanoOptionsWithDefaults } from "use-cardano"
+import { UseCardanoOptionsWithDefaults } from "../types"
 
 export const useLucidAndWalletApi = (options: UseCardanoOptionsWithDefaults) => {
   const { autoReconnect, allowedNetworks: allowedNetworkNames, testnetNetwork, node } = options

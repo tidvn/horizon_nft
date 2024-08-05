@@ -1,4 +1,5 @@
-declare module "use-cardano" {
+/* eslint-disable no-unused-vars */
+// declare module "cardano-types" {
 import { Lucid, WalletApi } from "lucid-cardano"
 import React from "react"
 
@@ -136,4 +137,4 @@ import React from "react"
   }
 
   export const UseCardanoConsumer: React.Consumer<UseCardanoContextState>
-}
+// }
