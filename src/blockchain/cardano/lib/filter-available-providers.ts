@@ -1,6 +1,6 @@
-import { supportedWalletProviders } from "../lib/supported-wallet-providers"
+import { AvailableProvider } from "../types"
+import { supportedWalletProviders } from "./supported-wallet-providers"
 import { isNil } from "lodash"
-import { AvailableProvider } from "use-cardano"
 
 export const filterAvailableProviders = (provider: any): provider is AvailableProvider =>
   !isNil(provider?.apiVersion) &&

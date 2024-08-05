@@ -1,5 +1,5 @@
 import { Blockfrost } from "lucid-cardano"
-import { TestnetNetwork, UseCardanoNodeOptions } from "use-cardano"
+import { TestnetNetwork, UseCardanoNodeOptions } from "../types";
 
 export const getNodeProvider = ({
   testnetNetwork,

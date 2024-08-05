@@ -1,10 +1,9 @@
 
 "use client";
 import React  from "react"
-import {
-     DefaultUseCardanoOptions, UseCardanoContextState,
-} from "use-cardano"
+import { DefaultUseCardanoOptions, UseCardanoContextState } from "../types";
 
+// eslint-disable-next-line no-unused-vars
 const noop = (..._: any[]) => {}
 
 export const defaultContextState: UseCardanoContextState = {
