@@ -8,7 +8,8 @@ import { enviroments } from "@/constants";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { isNil } from "lodash";
-import { useCardano, useIsConnectedToTheCorrectNetwork, constants, utility, WalletProvider } from "@/blockchain/cardano";
+import { useCardano, useIsConnectedToTheCorrectNetwork, constants, utility } from "@use-cardano";
+import { WalletProvider } from "use-cardano";
 
 export default function WalletButton() {
     const { network } = enviroments;
@@ -41,7 +42,7 @@ export default function WalletButton() {
         [walletApiError, accountError, networkError]
     )
     const isConnectedToTheCorrectNetwork = useIsConnectedToTheCorrectNetwork()
-    const currentProvider = availableProviders.find((p:any) => p.key === walletProvider)
+    const currentProvider = availableProviders.find((p) => p.key === walletProvider)
     return (
         <div className="flex flex-col">
             {isValid &&
@@ -94,7 +95,7 @@ export default function WalletButton() {
                                     <DialogTitle>Connect a wallet on {network.toLowerCase()} to continue </DialogTitle>
                                     <div className="flex flex-col gap-4 items-center pt-6">
                                         {allProviders.sort().map((provider) => {
-                                            const availableProvider = availableProviders.find((p:any) => p.key === provider)
+                                            const availableProvider = availableProviders.find((p) => p.key === provider)
 
                                             if (isNil(availableProvider)) {
                                                 return;

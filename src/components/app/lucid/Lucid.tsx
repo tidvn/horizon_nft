@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { useCardano } from "@/blockchain/cardano";
+import { useCardano } from "@use-cardano";
 const LucidPage = () => {
   const { lucid } = useCardano();
   const handleMint = async () => {

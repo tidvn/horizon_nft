@@ -7,7 +7,7 @@ import { isError } from "./lib/utils/is-error"
 export { useCardano } from "./contexts/CardanoContext"
 export { useIsConnectedToTheCorrectNetwork } from "./hooks/use-is-connected-to-the-correct-network"
 
-export  * from "./types"
+
 export const utility = {
   toNetworkId,
   toNetworkName,

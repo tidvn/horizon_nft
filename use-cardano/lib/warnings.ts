@@ -1,4 +1,4 @@
-import { UseCardanoWarning } from "../types"
+import { UseCardanoWarning } from "use-cardano"
 
 export const noLiveAccountChangeWarning: UseCardanoWarning = {
   type: "NO_LIVE_ACCOUNT_CHANGE",

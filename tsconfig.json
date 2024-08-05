@@ -20,6 +20,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/public/*": ["./public/*"],
+      "@use-cardano": ["./use-cardano/index.ts"],
+      "@use-cardano/provider": ["./use-cardano/index.tsx"],
     },
     "target": "ES2020"
   },

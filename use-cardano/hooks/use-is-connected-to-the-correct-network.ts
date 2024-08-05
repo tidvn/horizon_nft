@@ -4,7 +4,7 @@ import { isNil } from "lodash"
 import { useMemo } from "react"
 
 export const useIsConnectedToTheCorrectNetwork = () => {
-  const {  networkId, testnetNetwork, allowedNetworks } = useCardano()
+  const { account, networkId, testnetNetwork, allowedNetworks } = useCardano()
 
   const isConnectedToTheCorrectNetwork = useMemo(() => {
     if (isNil(networkId) || !testnetNetwork || !allowedNetworks) return true

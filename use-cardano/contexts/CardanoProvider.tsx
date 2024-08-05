@@ -3,8 +3,11 @@ import { useCardanoInitialization } from "../hooks/use-cardano-initialization"
 import { UseCardanoError } from "../lib/errors"
 import { Lucid, WalletApi } from "lucid-cardano"
 import React, { useMemo, useState } from "react"
+import {
+    AvailableProvider,
+    UseCardanoOptionsWithDefaults, UseCardanoWarning, WalletProvider
+} from "use-cardano"
 import { defaultContextState, defaultOptions, UseCardanoContext } from "./CardanoContext"
-import { AvailableProvider, UseCardanoOptionsWithDefaults, UseCardanoWarning, WalletProvider } from "../types";
 
 
 const Injector = ({ children, options }: React.PropsWithChildren<Props>) => {
