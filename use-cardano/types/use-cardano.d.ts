@@ -1,5 +1,5 @@
 declare module "use-cardano" {
-import { Lucid, Network, WalletApi } from "lucid-cardano"
+import { Lucid, WalletApi } from "lucid-cardano"
 import React from "react"
 
     // todo, add support for more node providers, when available in lucid
