@@ -62,13 +62,13 @@ export const defaultOptions: DefaultUseCardanoOptions = {
 
 export const UseCardanoContext = React.createContext<UseCardanoContextState>(defaultContextState)
 
-function useState<T>(initialState: T): [T, React.Dispatch<React.SetStateAction<T>>] {
-  const [valState, setValState] = React.useState(initialState)
-  const val = React.useMemo(() => valState, [valState])
-  const setVal = React.useCallback(setValState, [setValState])
+// function useState<T>(initialState: T): [T, React.Dispatch<React.SetStateAction<T>>] {
+//   const [valState, setValState] = React.useState(initialState)
+//   const val = React.useMemo(() => valState, [valState])
+//   const setVal = React.useCallback(setValState, [setValState])
 
-  return [val, setVal]
-}
+//   return [val, setVal]
+// }
 
 
 export const UseCardanoConsumer = UseCardanoContext.Consumer

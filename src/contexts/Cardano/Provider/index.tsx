@@ -4,7 +4,7 @@ import { enviroments } from "@/constants";
 import dynamic from "next/dynamic";
 import { PropsWithChildren } from "react";
 const CardanoProvideBase = dynamic(
-    async () => (await import("@use-cardano")).CardanoProvider,
+    async () => ((await import("@use-cardano/provider")).CardanoProvider),
     { ssr: false }
 )
 

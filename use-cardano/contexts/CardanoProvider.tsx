@@ -19,6 +19,7 @@ const Injector = ({ children, options }: React.PropsWithChildren<Props>) => {
 interface Props {
   options: UseCardanoOptionsWithDefaults
 }
+
 export const CardanoProvider = ({
   children,
   options: userOptions,
