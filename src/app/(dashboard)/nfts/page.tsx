@@ -1,5 +1,5 @@
 "use client";
-import NftsPage from "@/components/app/nfts/index";
+import NftsPage from "@/components/app/nfts";
 const Page = () => {
   return (
     <>
